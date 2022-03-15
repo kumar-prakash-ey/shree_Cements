@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="beans.xsd">
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ProductData">
+		<property name="genders" type="java.util.List&lt;com.scl.facades.product.data.GenderData>"/>
+	</bean>
+
+	<bean class="com.scl.facades.product.data.GenderData">
+		<property name="code" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="com.scl.facades.lead.data.LeadData">
+		<property name="leadId" type="String"/>
+		<property name="title" type="String"/>
+		<property name="firstName" type="String"/>
+		<property name="lastName" type="String"/>
+		<property name="company" type="String"/>
+		<property name="leadSource" type="String"/>
+		<property name="industryType" type="String"/>
+		<property name="annualRevenue" type="String"/>
+		<property name="phone" type="String"/>
+		<property name="mobile" type="String"/>
+		<property name="fax" type="String"/>
+		<property name="email" type="String"/>
+		<property name="website" type="String"/>
+		<property name="leadStatus" type="String"/>
+		<property name="leadQualificationLevel" type="String"/>
+		<property name="noOfEmployees" type="String"/>
+		<property name="campaignSource" type="String"/>
+		<property name="createdBy" type="String"/>
+		<property name="modifiedBy" type="String"/>
+		<!--<property name="street" type="String">
+			<description>street of the Lead</description>
+		</property>
+
+		<property name="city" type="String">
+			<description>city of the Lead</description>
+		</property>
+		<property name="state" type="String">
+			<description>state of the Lead</description>
+		</property>
+		<property name="zipCode" type="String">
+			<description>zipCode of the Lead</description>
+		</property>
+		<property name="country" type="String">
+			<description>country of the Lead</description>
+		</property>-->
+		<property name="description" type="String"/>
+		<property name="address" type="String"/>
+		<property name="quantity" type="String"/>
+		<property name="price" type="String"/>
+		<property name="accountName" type="String"/>
+		<property name="accountId" type="String"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.CustomerData">
+		<property name="sapCode" type="String"/>
+		<property name="leads" type="java.util.List&lt;com.scl.facades.lead.data.LeadData>"/>
+		<property name="productPortfolio" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>"/>
+	</bean>
+</beans>

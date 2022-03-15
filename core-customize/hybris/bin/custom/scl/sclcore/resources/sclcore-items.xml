@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<items xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="items.xsd">
+
+    <collectiontypes>
+        <collectiontype code="GenderList" elementtype="Gender" autocreate="true" generate="true" type="list"/>
+        <collectiontype code="SwatchColorSet" elementtype="SwatchColorEnum" autocreate="true" generate="true"
+                        type="set"/>
+        <collectiontype code="LeadCollection" elementtype="Lead" autocreate="true"
+                        type="set"/>
+    </collectiontypes>
+
+    <enumtypes>
+        <enumtype generate="true" code="SwatchColorEnum" autocreate="true" dynamic="true">
+            <value code="BLACK"/>
+            <value code="BLUE"/>
+            <value code="BROWN"/>
+            <value code="GREEN"/>
+            <value code="GREY"/>
+            <value code="ORANGE"/>
+            <value code="PINK"/>
+            <value code="PURPLE"/>
+            <value code="RED"/>
+            <value code="SILVER"/>
+            <value code="WHITE"/>
+            <value code="YELLOW"/>
+        </enumtype>
+        <enumtype generate="true" code="CustomerSegmentEnum" autocreate="true" dynamic="true">
+            <value code="TRADE"/>
+            <value code="NON_TRADE"/>
+        </enumtype>
+        <enumtype generate="true" code="LeadQualificationLevel" autocreate="true" dynamic="true">
+            <value code="HOT"/>
+            <value code="COLD"/>
+            <value code="WARM"/>
+        </enumtype>
+        <enumtype generate="true" code="LeadSource" autocreate="true" dynamic="true">
+            <value code="CAMPAIGN"/>
+            <value code="DEAL_REGISTRATION"/>
+            <value code="EXTERNAL_PARTENER"/>
+            <value code="ROADSHOW"/>
+            <value code="TELEPHONE"/>
+            <value code="ENQUIRY"/>
+            <value code="TRADE_FAIR"/>
+        </enumtype>
+        <enumtype generate="true" code="LeadStatus" autocreate="true" dynamic="true">
+            <value code="OPEN"/>
+            <value code="IN_PROCESS"/>
+            <value code="WON"/>
+            <value code="LOST"/>
+        </enumtype>
+    </enumtypes>
+
+    <itemtypes>
+
+        <!-- Add your item definitions here -->
+
+
+        <!-- TypeGroups are for structure of this file only -->
+
+        <typegroup name="Apparel">
+            <itemtype code="ApparelProduct" extends="Product"
+                      autocreate="true" generate="true"
+                      jaloclass="com.scl.core.jalo.ApparelProduct">
+                <description>Base apparel product extension that contains additional attributes.</description>
+                <attributes>
+                    <attribute qualifier="genders" type="GenderList">
+                        <description>List of genders that the ApparelProduct is designed for</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="ApparelStyleVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="com.scl.core.jalo.ApparelStyleVariantProduct">
+                <description>Apparel style variant type that contains additional attribute describing variant style.
+                </description>
+                <attributes>
+                    <attribute qualifier="style" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color/Pattern of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+
+                    <attribute qualifier="swatchColors" type="SwatchColorSet">
+                        <description>A normalized color mapping to a standardized front-end navigable name.
+                        </description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+
+            </itemtype>
+
+            <itemtype code="ApparelSizeVariantProduct" extends="ApparelStyleVariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="com.scl.core.jalo.ApparelSizeVariantProduct">
+                <description>Apparel size variant type that contains additional attribute describing variant size.
+                </description>
+                <attributes>
+                    <attribute qualifier="size" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Size of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="Electronics">
+            <itemtype code="ElectronicsColorVariantProduct" extends="VariantProduct"
+                      autocreate="true" generate="true"
+                      jaloclass="com.scl.core.jalo.ElectronicsColorVariantProduct">
+                <description>Electronics color variant type that contains additional attribute describing variant color.
+                </description>
+                <attributes>
+                    <attribute qualifier="color" type="localized:java.lang.String"
+                               metatype="VariantAttributeDescriptor">
+                        <description>Color of the product.</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+        </typegroup>
+
+        <typegroup name="ShreeCements">
+            <itemtype code="SclDealer" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Customer.</description>
+                <attributes>
+                    <attribute qualifier="sapCode" type="java.lang.String">
+                        <description>SAP code of User</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="productPortfolio" type="ProductCollection">
+                        <description>Product Portfolio Of the Customer</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="leads" type="LeadCollection">
+                        <description>Leads Associated with Dealer</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="SclRetailer" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Retailer
+                </description>
+                <attributes>
+                    <attribute qualifier="sapCode" type="java.lang.String">
+                        <description>SAP code of User</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="productPortfolio" type="ProductCollection">
+                        <description>Product Portfolio Of the Customer</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="SclInfluencer" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Influencer
+                </description>
+                <attributes>
+                    <attribute qualifier="registrationCode" type="java.lang.String">
+                        <description>Registration code of User</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="verification" type="java.lang.Boolean">
+                        <defaultvalue>Boolean.FALSE</defaultvalue>
+                        <description>Registration code of User</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="enrollment    " type="java.lang.Boolean">
+                        <defaultvalue>Boolean.FALSE</defaultvalue>
+                        <description>Registration code of User</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="SclSalesforce" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Sales Force
+                </description>
+                <attributes>
+                    <attribute qualifier="sapCode" type="java.lang.String">
+                        <description>SAP code of User</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="customerSegment" type="CustomerSegmentEnum">
+                        <description>Segment Of Customer</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Lead"
+                      autocreate="true" generate="true">
+                <description>Lead Data</description>
+                <deployment table="Lead" typecode="12000" />
+                <attributes>
+                    <attribute qualifier="leadId" type="java.lang.String">
+                        <description>Id of the lead</description>
+                        <modifiers read="true" write="true" search="true" optional="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="title" type="localized:java.lang.String">
+                        <description>title of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="firstName" type="localized:java.lang.String">
+                        <description>Name of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="lastName" type="localized:java.lang.String">
+                        <description>Last Name of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="company" type="java.lang.String">
+                        <description>Company of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="leadSource" type="java.lang.String">
+                        <description>leadsource of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="industryType" type="java.lang.String">
+                        <description>Industry Type of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="annualRevenue" type="java.lang.String">
+                        <description>annualRevenew of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="phone" type="java.lang.String">
+                        <description>phone of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="mobile" type="java.lang.String">
+                        <description>mobile of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="fax" type="java.lang.String">
+                        <description>tax of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="email" type="java.lang.String">
+                        <description>email of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="website" type="java.lang.String">
+                        <description>website of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="leadStatus" type="LeadStatus">
+                        <description>ladstatus of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="leadQualificationLevel" type="LeadQualificationLevel">
+                        <description>qualificationLevel of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="noOfEmployees" type="java.lang.String">
+                        <description>noOfEmployees of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="campaignSource" type="java.lang.String">
+                        <description>campaignSource of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="createdBy" type="User">
+                        <description>Lead createdBy </description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="modifiedBy" type="User">
+                        <description>lead Modified By</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="street" type="java.lang.String">
+                        <description>street of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="city" type="java.lang.String">
+                        <description>City of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="state" type="java.lang.String">
+                        <description>State of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="zipCode" type="java.lang.String">
+                        <description>Zipcode of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="country" type="java.lang.String">
+                        <description>Country of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="description" type="java.lang.String">
+                        <description>Description of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="address" type="Address">
+                        <description>Description of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="quantity" type="java.lang.String">
+                        <description>Quantity of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="price" type="java.lang.String">
+                        <description>Quantity of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="accountName" type="java.lang.String">
+                        <description>Account Name of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="accountId" type="java.lang.String">
+                        <description>Account ID of the lead</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+        </typegroup>
+
+    </itemtypes>
+</items>
