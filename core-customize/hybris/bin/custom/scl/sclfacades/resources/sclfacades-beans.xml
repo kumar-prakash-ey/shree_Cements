@@ -50,7 +50,7 @@
 			<description>country of the Lead</description>
 		</property>-->
 		<property name="description" type="String"/>
-		<property name="address" type="String"/>
+		<property name="address" type="de.hybris.platform.commercefacades.user.data.AddressData"/>
 		<property name="quantity" type="String"/>
 		<property name="price" type="String"/>
 		<property name="accountName" type="String"/>

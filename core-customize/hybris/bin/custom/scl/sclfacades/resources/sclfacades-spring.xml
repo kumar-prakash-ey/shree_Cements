@@ -182,4 +182,34 @@
 	</bean>
 
 	<bean id="genderData" class="com.scl.facades.product.data.GenderData" scope="prototype"/>
+
+	<alias name="defaultSclLeadReverseConverter" alias="sclLeadReverseConverter"/>
+	<bean id="defaultSclLeadReverseConverter" parent="abstractPopulatingConverter" >
+		<property name="targetClass" value="com.scl.facades.lead.data.LeadData"/>
+		<property name="populators">
+			<list>
+				<ref bean="sclLeadReversePopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="sclLeadReversePopulator" class="com.scl.facades.populators.lead.SclLeadReversePopulator" >
+	</bean>
+
+	<alias name="defaultSclLeadConverter" alias="sclLeadConverter"/>
+	<bean id="defaultSclLeadConverter" parent="abstractPopulatingConverter" >
+		<property name="targetClass" value="com.scl.core.model.LeadModel"/>
+		<property name="populators">
+			<list>
+				<ref bean="sclLeadPopulator"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="sclLeadPopulator" class="com.scl.facades.populators.lead.SclLeadPopulator" >
+	</bean>
+
+	<alias name="defaultSclLeadFacade" alias="sclLeadFacade" />
+	<bean id="defaultSclLeadFacade" class="com.scl.facades.lead.impl.DefaultSclLeadFacade"/>
+
 </beans>

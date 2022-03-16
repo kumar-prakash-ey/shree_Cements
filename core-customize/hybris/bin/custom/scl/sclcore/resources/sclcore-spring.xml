@@ -538,4 +538,11 @@
 		<property name="itemCleanupHooks" ref="csTicketRetentionHooks"/>
 		<property name="ticketBusinessService" ref="ticketBusinessService"/>
 	</bean>
+
+	<alias name="defaultSclLeadService" alias="sclLeadService" />
+	<bean id="defaultSclLeadService" class="com.scl.core.lead.services.impl.DefaultSclLeadService"/>
+
+	<alias name="defaultSclLeadDao" alias="sclLeadDao" />
+	<bean id="defaultSclLeadDao" class="com.scl.core.lead.dao.impl.DefaultSclLeadDao"/>
+
 </beans>

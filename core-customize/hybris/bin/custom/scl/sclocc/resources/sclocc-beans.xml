@@ -116,7 +116,15 @@
 	</bean>
 
 	<bean class="de.hybris.platform.b2bwebservicescommons.dto.company.OrgCustomerCreationWsDTO">
-
+		<property name="sapCode" type="String">
+			<description>sap code of the user</description>
+		</property>
+		<property name="productPortfolio" type="java.util.List&lt;de.hybris.platform.commercewebservicescommons.dto.product.ProductWsDTO>">
+			<description>List of products</description>
+		</property>
+		<property name="leads" type="java.util.List&lt;com.scl.dto.lead.LeadWsDTO>">
+			<description>leads of the user</description>
+		</property>
 	</bean>
 
 </beans>
