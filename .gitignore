@@ -21,3 +21,29 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+#local preference files
+*.prefs
+
+#generated project file
+.project
+
+#Generated Build file
+build.xml
+
+#Generated Java Files
+Generated*.java
+
+#Coiped addon folders
+addonsrc/
+addons/
+commonwebsrc/
+addontestsrc/
+
+#generated launch files
+HybrisBeanGeneration.launch
+HybrisCodeGeneration.launch
+
+#generated .spring files
+.springBeans
+
