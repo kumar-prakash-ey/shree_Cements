@@ -27,4 +27,18 @@
         </property>
     </bean>
 
+    <bean parent="fieldSetLevelMapping" id="reviewWsDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="de.hybris.platform.commercewebservicescommons.dto.product.ReviewWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="id,headline,principal,alias,rating,date,comment,orderCode"/>
+                <entry key="DEFAULT"
+                       value="id,headline,principal(DEFAULT),alias,rating,date,comment,orderCode"/>
+                <entry key="FULL"
+                       value="id,headline,principal(FULL),alias,rating,date,comment,orderCode"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

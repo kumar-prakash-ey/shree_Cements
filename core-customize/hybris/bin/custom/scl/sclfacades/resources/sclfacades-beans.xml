@@ -62,4 +62,9 @@
 		<property name="leads" type="java.util.List&lt;com.scl.facades.lead.data.LeadData>"/>
 		<property name="productPortfolio" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>"/>
 	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
+		<property name="orderCode" type="String"/>
+	</bean>
+
 </beans>

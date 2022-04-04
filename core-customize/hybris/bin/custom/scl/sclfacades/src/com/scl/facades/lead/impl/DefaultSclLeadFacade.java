@@ -16,18 +16,16 @@ import static de.hybris.platform.servicelayer.util.ServicesUtil.validateParamete
 
 public class DefaultSclLeadFacade implements SclLeadFacade {
 
-    @Resource
     private ModelService modelService;
-
-    @Resource
     private SclLeadService sclLeadService;
-
-    @Resource
     private Converter<LeadData, LeadModel> sclLeadReverseConverter;
-
-    @Resource
     private Converter<LeadModel , LeadData> sclLeadConverter;
 
+    /**
+     * create or update lead model with lead data
+     * @param leadData
+     * @return
+     */
     @Override
     public String updateLead(LeadData leadData) {
         validateParameterNotNullStandardMessage("leadData", leadData);
@@ -45,12 +43,49 @@ public class DefaultSclLeadFacade implements SclLeadFacade {
         return leadId;
     }
 
+    /**
+     * fetches lead with given leadID
+     * @param leadId
+     * @return
+     */
     @Override
     public LeadData getLeadForLeadId(String leadId) {
 
          LeadData leadData = new LeadData();
          final LeadModel leadModel = sclLeadService.findLeadByLeadId(leadId);
          return sclLeadConverter.convert(leadModel,leadData);
+    }
+
+    public ModelService getModelService() {
+        return modelService;
+    }
+
+    public void setModelService(ModelService modelService) {
+        this.modelService = modelService;
+    }
+
+    public SclLeadService getSclLeadService() {
+        return sclLeadService;
+    }
+
+    public void setSclLeadService(SclLeadService sclLeadService) {
+        this.sclLeadService = sclLeadService;
+    }
+
+    public Converter<LeadData, LeadModel> getSclLeadReverseConverter() {
+        return sclLeadReverseConverter;
+    }
+
+    public void setSclLeadReverseConverter(Converter<LeadData, LeadModel> sclLeadReverseConverter) {
+        this.sclLeadReverseConverter = sclLeadReverseConverter;
+    }
+
+    public Converter<LeadModel, LeadData> getSclLeadConverter() {
+        return sclLeadConverter;
+    }
+
+    public void setSclLeadConverter(Converter<LeadModel, LeadData> sclLeadConverter) {
+        this.sclLeadConverter = sclLeadConverter;
     }
 
 }

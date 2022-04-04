@@ -8,11 +8,25 @@ import java.util.List;
 
 public interface SclLeadService {
 
-    Boolean saveLeadEntry(final B2BCustomerModel b2bCustomer , final LeadModel leadModel);
 
+    /**
+     * Update lead model with some data
+     * @param b2BCustomer
+     * @param leadModel
+     * @return
+     */
     Boolean updateLeadEntry(final B2BCustomerModel b2BCustomer,  final LeadModel leadModel);
 
+    /**
+     * Service method to get lead by lead ID
+     * @param leadID
+     * @return
+     */
     LeadModel findLeadByLeadId(final String leadID);
 
+    /**
+     * get all the leads
+     * @return
+     */
     List<LeadModel> getAllLeads();
 }

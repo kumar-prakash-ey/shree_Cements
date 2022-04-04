@@ -540,9 +540,34 @@
 	</bean>
 
 	<alias name="defaultSclLeadService" alias="sclLeadService" />
-	<bean id="defaultSclLeadService" class="com.scl.core.lead.services.impl.DefaultSclLeadService"/>
+	<bean id="defaultSclLeadService" class="com.scl.core.lead.services.impl.DefaultSclLeadService">
+		<property name="modelService" ref="modelService"/>
+		<property name="sclLeadDao" ref="sclLeadDao"/>
+	</bean>
 
 	<alias name="defaultSclLeadDao" alias="sclLeadDao" />
 	<bean id="defaultSclLeadDao" class="com.scl.core.lead.dao.impl.DefaultSclLeadDao"/>
 
+	<alias name="defaultSclCustomerAccountService" alias="sclCustomerAccountService" />
+	<bean id="defaultSclCustomerAccountService" class="com.scl.core.customer.services.impl.DefaultSclCustomerAccountService">
+		<property name="sclCustomerAccountDao" ref="sclCustomerAccountDao"/>
+		<property name="timeService" ref="timeService"/>
+		<property name="modelService" ref="modelService"/>
+
+	</bean>
+	<alias name="defaultSclCustomerAccountDao" alias="sclCustomerAccountDao" />
+	<bean id="defaultSclCustomerAccountDao" class="com.scl.core.customer.dao.impl.DefaultSclCustomerAccountDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<alias name="defaultSclFeedbackService" alias="sclFeedbackService" />
+	<bean id="defaultSclFeedbackService" class="com.scl.core.feedback.services.impl.DefaultSclFeedbackService">
+		<property name="modelService" ref="modelService"/>
+		<property name="sclFeedbackDao" ref="sclFeedbackDao"/>
+	</bean>
+
+	<alias name="defaultSclFeedbackDao" alias="sclFeedbackDao" />
+	<bean id="defaultSclFeedbackDao" class="com.scl.core.feedback.dao.impl.DefaultSclFeedbackDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
 </beans>

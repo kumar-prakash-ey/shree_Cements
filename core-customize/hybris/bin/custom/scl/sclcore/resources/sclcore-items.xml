@@ -52,6 +52,16 @@
             <value code="LOST"/>
         </enumtype>
     </enumtypes>
+    <relations>
+        <relation  localized="false" code="ReviewToOrderRel" autocreate="true">
+            <sourceElement type="Order" qualifier="order" cardinality="one">
+                <modifiers write="false" initial="true" optional="true" />
+            </sourceElement>
+            <targetElement type="CustomerReview" qualifier="orderReviews" cardinality="many">
+                <modifiers partof="true" />
+            </targetElement>
+        </relation>
+    </relations>
 
     <itemtypes>
 
@@ -370,6 +380,18 @@
                         <persistence type="property"/>
                     </attribute>
                 </attributes>
+            </itemtype>
+
+            <itemtype code="Customer" autocreate="false" generate="false">
+            <description>Extending Customer type with additional attributes.</description>
+            <attributes>
+            <attribute autocreate="true" qualifier="averageOrderValue" type="java.lang.Double">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+                <persistence type="property" />
+                <description>It holds information about customer average order value</description>
+            </attribute>
+            </attributes>
             </itemtype>
 
         </typegroup>
