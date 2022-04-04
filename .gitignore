@@ -33,6 +33,7 @@ build.xml
 
 #Generated Java Files
 Generated*.java
+gensrc/
 
 #Coiped addon folders
 addonsrc/
