@@ -55,10 +55,60 @@
     <relations>
         <relation  localized="false" code="ReviewToOrderRel" autocreate="true">
             <sourceElement type="Order" qualifier="order" cardinality="one">
-                <modifiers write="false" initial="true" optional="true" />
+                <modifiers read="true" write="true" search="true" optional="true" />
             </sourceElement>
             <targetElement type="CustomerReview" qualifier="orderReviews" cardinality="many">
-                <modifiers partof="true" />
+                <modifiers read="true" write="true" search="true" optional="true" partof="true" />
+            </targetElement>
+        </relation>
+
+        <relation  localized="false" code="SalesPromToDealerRel" autocreate="true">
+            <sourceElement type="SalesPromoter" qualifier="salesPromoter" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="Dealer" qualifier="dealer" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation  localized="false" code="SalesOffToDealerRel" autocreate="true">
+            <sourceElement type="SalesOfficer" qualifier="salesOfficer" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="Dealer" qualifier="dealer" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+        <relation  localized="false" code="SalesAccToDealerRel" autocreate="true">
+            <sourceElement type="SalesAccount" qualifier="salesAccount" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="Dealer" qualifier="dealer" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+        <relation  localized="false" code="SalesHdToSalesOffRel" autocreate="true">
+            <sourceElement type="SalesHead" qualifier="salesHead" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="SalesOfficer" qualifier="salesOfficer" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+        <relation  localized="false" code="SalesHdToSalesAccRel" autocreate="true">
+            <sourceElement type="SalesHead" qualifier="salesHead" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="SalesAccount" qualifier="salesAccount" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+        <relation  localized="false" code="PresMktToSalesHDRel" autocreate="true">
+            <sourceElement type="PresidentMarketing" qualifier="presidentMarketing" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="SalesHead" qualifier="salesHead" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" />
             </targetElement>
         </relation>
     </relations>
@@ -141,7 +191,7 @@
         </typegroup>
 
         <typegroup name="ShreeCements">
-            <itemtype code="SclDealer" extends="B2BCustomer" autocreate="true"
+            <itemtype code="Dealer" extends="B2BCustomer" autocreate="true"
                       generate="true">
                 <description>SCL Customer.</description>
                 <attributes>
@@ -392,6 +442,48 @@
                 <description>It holds information about customer average order value</description>
             </attribute>
             </attributes>
+            </itemtype>
+
+            <itemtype code="SclAccount" extends="B2Bunit" autocreate="true"
+                      generate="true">
+                <description>SCL B2B Unit
+                </description>
+                <!--Add Custom B2B Unit Attributes here -->
+            </itemtype>
+
+            <itemtype code="SalesOfficer" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Sales officer
+                </description>
+                <!--Add Custom Sales officer Attributes here -->
+            </itemtype>
+
+            <itemtype code="SalesPromoter" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Sales Promoter
+                </description>
+                <!--Add Custom Sales promoter Attributes here -->
+            </itemtype>
+
+            <itemtype code="SalesHead" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Sales Head
+                </description>
+                <!--Add Custom Sales head Attributes here -->
+            </itemtype>
+
+            <itemtype code="SalesAccount" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Sales account
+                </description>
+                <!--Add Custom Sales Account Attributes here -->
+            </itemtype>
+
+            <itemtype code="PresidentMarketing" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL President Marketing
+                </description>
+                <!--Add Custom President Marketing Attributes here -->
             </itemtype>
 
         </typegroup>
