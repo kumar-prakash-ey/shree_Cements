@@ -85,12 +85,12 @@
                                 
         
         
-        <!--<requires-extension name="xyformsstorefrontcommons"/>
+        <requires-extension name="xyformsstorefrontcommons"/>
                                         
         
         
         
-        <requires-extension name="xyformssamples"/>-->
+        <requires-extension name="xyformssamples"/>
                                                 
         
         
