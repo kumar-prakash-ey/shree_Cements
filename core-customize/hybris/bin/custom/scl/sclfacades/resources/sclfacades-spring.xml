@@ -222,6 +222,7 @@
 		<property name="sclCustomerAccountService" ref="sclCustomerAccountService"/>
 		<property name="userService" ref="userService"/>
 		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="sclDealerDocumentsService" ref="sclDealerDocumentsService"/>
 	</bean>
 
 	<alias name="defaultSclFeedbackFacade" alias="sclFeedbackFacade" />

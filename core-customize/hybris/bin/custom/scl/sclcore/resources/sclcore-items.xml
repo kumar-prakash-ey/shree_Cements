@@ -62,52 +62,13 @@
             </targetElement>
         </relation>
 
-        <relation  localized="false" code="SalesPromToDealerRel" autocreate="true">
-            <sourceElement type="SalesPromoter" qualifier="salesPromoter" cardinality="one">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </sourceElement>
-            <targetElement type="Dealer" qualifier="dealer" cardinality="many">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </targetElement>
-        </relation>
 
-        <relation  localized="false" code="SalesOffToDealerRel" autocreate="true">
-            <sourceElement type="SalesOfficer" qualifier="salesOfficer" cardinality="one">
+        <relation code="SclHierarchyRelation" generate="true" localized="false" autocreate="true">
+            <deployment table="SclHierarchyRelation" typecode="12010" />
+            <sourceElement qualifier="reporter" type="SclUser" cardinality="many" collectiontype="set" >
                 <modifiers read="true" write="true" search="true" optional="true" />
             </sourceElement>
-            <targetElement type="Dealer" qualifier="dealer" cardinality="many">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </targetElement>
-        </relation>
-        <relation  localized="false" code="SalesAccToDealerRel" autocreate="true">
-            <sourceElement type="SalesAccount" qualifier="salesAccount" cardinality="one">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </sourceElement>
-            <targetElement type="Dealer" qualifier="dealer" cardinality="many">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </targetElement>
-        </relation>
-        <relation  localized="false" code="SalesHdToSalesOffRel" autocreate="true">
-            <sourceElement type="SalesHead" qualifier="salesHead" cardinality="one">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </sourceElement>
-            <targetElement type="SalesOfficer" qualifier="salesOfficer" cardinality="many">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </targetElement>
-        </relation>
-        <relation  localized="false" code="SalesHdToSalesAccRel" autocreate="true">
-            <sourceElement type="SalesHead" qualifier="salesHead" cardinality="one">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </sourceElement>
-            <targetElement type="SalesAccount" qualifier="salesAccount" cardinality="many">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </targetElement>
-        </relation>
-        <relation  localized="false" code="PresMktToSalesHDRel" autocreate="true">
-            <sourceElement type="PresidentMarketing" qualifier="presidentMarketing" cardinality="one">
-                <modifiers read="true" write="true" search="true" optional="true" />
-            </sourceElement>
-            <targetElement type="SalesHead" qualifier="salesHead" cardinality="many">
+            <targetElement qualifier="reportees" type="B2BCustomer" cardinality="many" collectiontype="set">
                 <modifiers read="true" write="true" search="true" optional="true" />
             </targetElement>
         </relation>
@@ -451,39 +412,11 @@
                 <!--Add Custom B2B Unit Attributes here -->
             </itemtype>
 
-            <itemtype code="SalesOfficer" extends="B2BCustomer" autocreate="true"
+            <itemtype code="SclUser" extends="B2BCustomer" autocreate="true"
                       generate="true">
-                <description>SCL Sales officer
+                <description>SCL Users
                 </description>
-                <!--Add Custom Sales officer Attributes here -->
-            </itemtype>
-
-            <itemtype code="SalesPromoter" extends="B2BCustomer" autocreate="true"
-                      generate="true">
-                <description>SCL Sales Promoter
-                </description>
-                <!--Add Custom Sales promoter Attributes here -->
-            </itemtype>
-
-            <itemtype code="SalesHead" extends="B2BCustomer" autocreate="true"
-                      generate="true">
-                <description>SCL Sales Head
-                </description>
-                <!--Add Custom Sales head Attributes here -->
-            </itemtype>
-
-            <itemtype code="SalesAccount" extends="B2BCustomer" autocreate="true"
-                      generate="true">
-                <description>SCL Sales account
-                </description>
-                <!--Add Custom Sales Account Attributes here -->
-            </itemtype>
-
-            <itemtype code="PresidentMarketing" extends="B2BCustomer" autocreate="true"
-                      generate="true">
-                <description>SCL President Marketing
-                </description>
-                <!--Add Custom President Marketing Attributes here -->
+                <!--Add Custom scl users Attributes here -->
             </itemtype>
 
         </typegroup>

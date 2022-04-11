@@ -570,4 +570,17 @@
 	<bean id="defaultSclFeedbackDao" class="com.scl.core.feedback.dao.impl.DefaultSclFeedbackDao">
 		<property name="flexibleSearchService" ref="flexibleSearchService"/>
 	</bean>
+
+	<alias name="defaultSclCustomerService" alias="sclCustomerService" />
+	<bean id="defaultSclCustomerService" class="com.scl.core.customer.services.impl.DefaultSclCustomerService">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<alias name="defaultSclDealerDocumentsService" alias="sclDealerDocumentsService" />
+	<bean id="defaultSclDealerDocumentsService" class="com.scl.core.customer.services.impl.DefaultSclDealerDocumentsService">
+		<property name="mediaService" ref="mediaService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="sclCustomerService" ref="sclCustomerService"/>
+
+	</bean>
 </beans>
