@@ -67,4 +67,15 @@
 		<property name="orderCode" type="String"/>
 	</bean>
 
+	<!--<bean class="com.scl.facades.dealer.data.DealerDocumentUploadData">
+		<property name="dealerCode" type="String"/>
+		<property name="panCard" type="String"/>
+		<property name="gstDetails" type="String"/>
+		<property name="ddDetails" type="String"/>
+		<property name="godownDetails" type="String"/>
+		<property name="bankStatement" type="String"/>
+		<property name="blankCheque" type="String"/>
+		<property name="letterHeadCopy" type="String"/>
+	</bean>-->
+
 </beans>

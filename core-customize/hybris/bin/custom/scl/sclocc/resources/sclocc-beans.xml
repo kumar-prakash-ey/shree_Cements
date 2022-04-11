@@ -134,4 +134,31 @@
 	</property>
 	</bean>
 
+	<!--<bean class="com.scl.dto.dealer.DealerDocumentUploadWsDTO">
+		<description>Attributes for Dealer Document Upload DTO</description>
+		<property name="dealerCode" type="String">
+			<description>Identifier of order</description>
+		</property>
+		<property name="panCard" type="String">
+			<description>Media of pancard</description>
+		</property>
+		<property name="gstDetails" type="String">
+			<description>Media of gstDetails</description>
+		</property>
+		<property name="ddDetails" type="String">
+			<description>Media of pancard</description>
+		</property>
+		<property name="godownDetails" type="String">
+			<description>Media of ddDetails</description>
+		</property>
+		<property name="bankStatement" type="String">
+			<description>Media of bankStatement</description>
+		</property>
+		<property name="blankCheque" type="String">
+			<description>Media of blankCheque</description>
+		</property>
+		<property name="letterHeadCopy" type="String">
+			<description>Media of letterHeadCopy</description>
+		</property>
+	</bean>-->
 </beans>

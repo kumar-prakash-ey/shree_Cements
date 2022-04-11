@@ -24,5 +24,17 @@ public final class SclCoreConstants extends GeneratedSclCoreConstants
 	public static final String QUOTE_TO_EXPIRE_SOON_EMAIL_PROCESS = "quote-to-expire-soon-email-process";
 	public static final String QUOTE_EXPIRED_EMAIL_PROCESS = "quote-expired-email-process";
 	public static final String QUOTE_POST_CANCELLATION_PROCESS = "quote-post-cancellation-process";
+	public static final String IMAGE_MEDIA_FOLDER_NAME = "images";
+
+	public static final String DOCUMENT_PAN_CARD = "pan";
+	public static final String DOCUMENT_TYPE_GST_DETAILS = "gst";
+	public static final String DOCUMENT_TYPE_DD_DETAILS = "dd";
+	public static final String DOCUMENT_TYPE_GODOWN_DETAILS = "godown";
+	public static final String DOCUMENT_TYPE_BANK_STATEMENT = "bankstatement";
+	public static final String DOCUMENT_TYPE_BLANK_CHEQUE = "blankcheque";
+	public static final String DOCUMENT_TYPE_LETTER_HEAD_COPY = "letterhead";
+	public static final String UNDERSCORE_CHARACTER = "_";
+
+
 
 }
