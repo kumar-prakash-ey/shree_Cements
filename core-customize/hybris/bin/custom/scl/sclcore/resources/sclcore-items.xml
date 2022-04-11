@@ -110,9 +110,6 @@
                 <modifiers read="true" write="true" search="true" optional="true" />
             </targetElement>
         </relation>
-    </relations>
-
-    <relations>
         <relation code="ProsDealer2AddressRelation" generate="true"
                   localized="false" autocreate="true">
             <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
@@ -613,8 +610,6 @@
                 </description>
                 <!--Add Custom scl users Attributes here -->
             </itemtype>
-
-        </typegroup>
 
             <itemtype code="ProspectiveDealer" extends="B2BCustomer" autocreate="true"
                       generate="true">
