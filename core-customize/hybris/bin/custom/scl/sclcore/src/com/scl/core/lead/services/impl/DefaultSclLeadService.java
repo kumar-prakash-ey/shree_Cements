@@ -15,34 +15,17 @@ import java.util.UUID;
 
 public class DefaultSclLeadService implements SclLeadService {
 
-    @Resource
     private ModelService modelService;
-
-
-    @Resource
     private SclLeadDao sclLeadDao;
 
     private static final Logger LOG = Logger.getLogger(DefaultSclLeadService.class);
 
-
-    @Override
-    public Boolean saveLeadEntry(final B2BCustomerModel b2bCustomer , final LeadModel leadModel){
-
-        //final String leadId = String.valueOf(leadCodeGenerator.generate());
-        final String leadId = UUID.randomUUID().toString();
-        leadModel.setLeadId(leadId);
-        leadModel.setOwner(b2bCustomer);
-        leadModel.setCreatedBy(b2bCustomer);
-        try{
-            modelService.save(leadModel);
-        }
-        catch (ModelSavingException mse){
-            LOG.error("Error occured while saving Lead "+leadModel.getFirstName()+"\n");
-            LOG.error("Exception is: "+mse.getMessage());
-            return Boolean.FALSE;
-        }
-        return Boolean.TRUE;
-    }
+    /**
+     * Update lead model with some data
+     * @param b2BCustomer
+     * @param leadModel
+     * @return
+     */
 
     @Override
     public Boolean updateLeadEntry(final B2BCustomerModel b2BCustomer,  final LeadModel leadModel){
@@ -50,7 +33,7 @@ public class DefaultSclLeadService implements SclLeadService {
         leadModel.setModifiedBy(b2BCustomer);
 
         try{
-            modelService.save(leadModel);
+            getModelService().save(leadModel);
         }
         catch (ModelSavingException mse){
             LOG.error("Error occured while updating Lead "+leadModel.getLeadId()+"\n");
@@ -60,14 +43,39 @@ public class DefaultSclLeadService implements SclLeadService {
         return Boolean.TRUE;
     }
 
+    /**
+     * Service method to get lead by lead ID
+     * @param leadID
+     * @return
+     */
     @Override
     public LeadModel findLeadByLeadId(final String leadID){
-        return sclLeadDao.getLeadByLeadID(leadID);
+        return getSclLeadDao().getLeadByLeadID(leadID);
     }
 
+    /**
+     * get all the leads
+     * @return
+     */
     @Override
     public List<LeadModel> getAllLeads(){
-        return sclLeadDao.getAllLeadsData();
+        return getSclLeadDao().getAllLeadsData();
     }
 
+
+    public ModelService getModelService() {
+        return modelService;
+    }
+
+    public void setModelService(ModelService modelService) {
+        this.modelService = modelService;
+    }
+
+    public SclLeadDao getSclLeadDao() {
+        return sclLeadDao;
+    }
+
+    public void setSclLeadDao(SclLeadDao sclLeadDao) {
+        this.sclLeadDao = sclLeadDao;
+    }
 }

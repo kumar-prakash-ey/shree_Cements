@@ -90,6 +90,27 @@
             <value code="ESCALATION" />
         </enumtype>
     </enumtypes>
+    <relations>
+        <relation  localized="false" code="ReviewToOrderRel" autocreate="true">
+            <sourceElement type="Order" qualifier="order" cardinality="one">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement type="CustomerReview" qualifier="orderReviews" cardinality="many">
+                <modifiers read="true" write="true" search="true" optional="true" partof="true" />
+            </targetElement>
+        </relation>
+
+
+        <relation code="SclHierarchyRelation" generate="true" localized="false" autocreate="true">
+            <deployment table="SclHierarchyRelation" typecode="12010" />
+            <sourceElement qualifier="reporter" type="SclUser" cardinality="many" collectiontype="set" >
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </sourceElement>
+            <targetElement qualifier="reportees" type="B2BCustomer" cardinality="many" collectiontype="set">
+                <modifiers read="true" write="true" search="true" optional="true" />
+            </targetElement>
+        </relation>
+    </relations>
 
     <relations>
         <relation code="ProsDealer2AddressRelation" generate="true"
@@ -327,7 +348,7 @@
         </typegroup>
 
         <typegroup name="ShreeCements">
-            <itemtype code="SclDealer" extends="B2BCustomer" autocreate="true"
+            <itemtype code="Dealer" extends="B2BCustomer" autocreate="true"
                       generate="true">
                 <description>SCL Customer.</description>
                 <attributes>
@@ -567,6 +588,33 @@
                 </attributes>
             </itemtype>
 
+            <itemtype code="Customer" autocreate="false" generate="false">
+            <description>Extending Customer type with additional attributes.</description>
+            <attributes>
+            <attribute autocreate="true" qualifier="averageOrderValue" type="java.lang.Double">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+                <persistence type="property" />
+                <description>It holds information about customer average order value</description>
+            </attribute>
+            </attributes>
+            </itemtype>
+
+            <itemtype code="SclAccount" extends="B2Bunit" autocreate="true"
+                      generate="true">
+                <description>SCL B2B Unit
+                </description>
+                <!--Add Custom B2B Unit Attributes here -->
+            </itemtype>
+
+            <itemtype code="SclUser" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Users
+                </description>
+                <!--Add Custom scl users Attributes here -->
+            </itemtype>
+
+        </typegroup>
 
             <itemtype code="ProspectiveDealer" extends="B2BCustomer" autocreate="true"
                       generate="true">

@@ -16,6 +16,11 @@ public class DefaultSclLeadDao extends DefaultGenericDao<LeadModel> implements S
         super(LeadModel._TYPECODE);
     }
 
+    /**
+     * Dao method to fetch lead by lead ID
+     * @param leadID
+     * @return
+     */
     @Override
     public LeadModel getLeadByLeadID(final String leadID) {
         validateParameterNotNullStandardMessage("leadID", leadID);
@@ -32,6 +37,10 @@ public class DefaultSclLeadDao extends DefaultGenericDao<LeadModel> implements S
         }
     }
 
+    /**
+     * gets all leads
+     * @return
+     */
     @Override
     public List<LeadModel> getAllLeadsData(){
         return this.find();

@@ -8,6 +8,7 @@ public class SclSecuredAccessConstants {
     public static final String ROLE_CUSTOMERMANAGERGROUP = "ROLE_CUSTOMERMANAGERGROUP";
     public static final String ROLE_B2BADMINGROUP = "ROLE_B2BADMINGROUP";
     public static final String ROLE_B2BAPPROVERGROUP = "ROLE_B2BAPPROVERGROUP";
+    public static final String ROLE_CLIENT = "ROLE_CLIENT";
 
     private SclSecuredAccessConstants()
     {

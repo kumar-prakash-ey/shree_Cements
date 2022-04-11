@@ -25,14 +25,14 @@
 	<c:if test="${not empty message}">
 		<span class="has-error"> <spring:theme code="${message}" />
 		</span>
-	</c:if>	
-	
+	</c:if>
+
 		<formElement:formInputBox idKey="j_username" labelKey="login.email"
 			path="j_username" mandatory="true" />
 		<formElement:formPasswordBox idKey="j_password"
 			labelKey="login.password" path="j_password" inputCSS="form-control"
 			mandatory="true" />
-	
+
 			<div class="forgotten-password">
 				<ycommerce:testId code="login_forgotPassword_link">
 					<a href="#" data-link="<c:url value='/login/pw/request'/>" class="js-password-forgotten" data-cbox-title="<spring:theme code="forgottenPwd.title"/>">
@@ -46,7 +46,7 @@
 			</button>
 		</ycommerce:testId>
 
-	
+
 	<c:if test="${expressCheckoutAllowed}">
 		<button type="submit" class="btn btn-default btn-block expressCheckoutButton"><spring:theme code="text.expresscheckout.header" /></button>
 		<input id="expressCheckoutCheckbox" name="expressCheckoutEnabled" type="checkbox" class="form left doExpressCheckout display-none" />

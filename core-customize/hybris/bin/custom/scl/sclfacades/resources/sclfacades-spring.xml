@@ -210,6 +210,38 @@
 	</bean>
 
 	<alias name="defaultSclLeadFacade" alias="sclLeadFacade" />
-	<bean id="defaultSclLeadFacade" class="com.scl.facades.lead.impl.DefaultSclLeadFacade"/>
+	<bean id="defaultSclLeadFacade" class="com.scl.facades.lead.impl.DefaultSclLeadFacade">
+		<property name="modelService" ref="modelService"/>
+		<property name="sclLeadService" ref="sclLeadService"/>
+		<property name="sclLeadReverseConverter" ref="sclLeadReverseConverter"/>
+		<property name="sclLeadConverter" ref="sclLeadConverter"/>
+	</bean>
+
+	<alias name="defaultSclCustomerFacade" alias="sclCustomerFacade" />
+	<bean id="defaultSclCustomerFacade" class="com.scl.facades.customer.impl.DefaultSclCustomerFacade">
+		<property name="sclCustomerAccountService" ref="sclCustomerAccountService"/>
+		<property name="userService" ref="userService"/>
+		<property name="baseStoreService" ref="baseStoreService"/>
+		<property name="sclDealerDocumentsService" ref="sclDealerDocumentsService"/>
+	</bean>
+
+	<alias name="defaultSclFeedbackFacade" alias="sclFeedbackFacade" />
+	<bean id="defaultSclFeedbackFacade" class="com.scl.facades.feedback.impl.DefaultSclFeedbackFacade">
+		<property name="sclFeedbackService" ref="sclFeedbackService"/>
+		<property name="b2bOrderService" ref="b2bOrderService"/>
+		<property name="userService" ref="userService"/>
+		<property name="configurationService" ref="configurationService"/>
+		<property name="productService" ref="productService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="commonI18NService" ref="commonI18NService"/>
+		<property name="customerReviewConverter" ref="customerReviewConverter"/>
+	</bean>
+
+	<bean id="SclFeedbackPopulator" class="com.scl.facades.populators.feedback.SclFeedbackPopulator" >
+	</bean>
+	<bean parent="modifyPopulatorList">
+		<property name="list" ref="customerReviewConverter"/>
+		<property name="add" ref="SclFeedbackPopulator"/>
+	</bean>
 
 </beans>

@@ -27,6 +27,12 @@ public class SclLeadsController extends SclBaseController{
     @Resource
     private SclLeadFacade sclLeadFacade;
 
+    /**
+     * Method to create lead
+     * @param leadCreation
+     * @param fields
+     * @return
+     */
     @Secured({ SclSecuredAccessConstants.ROLE_B2BADMINGROUP, SclSecuredAccessConstants.ROLE_TRUSTED_CLIENT,SclSecuredAccessConstants.ROLE_CUSTOMERGROUP })
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.CREATED)

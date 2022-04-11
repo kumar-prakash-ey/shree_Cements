@@ -553,5 +553,41 @@
 
 			<alias name="defaultProsDealerDao" alias="prosDealerDao" />
 			<bean id="defaultProsDealerDao" class="com.scl.core.prosdealer.dao.impl.ProsDealerDaoImpl"/>
+			
+			<alias name="defaultSclCustomerAccountService" alias="sclCustomerAccountService" />
+	<bean id="defaultSclCustomerAccountService" class="com.scl.core.customer.services.impl.DefaultSclCustomerAccountService">
+		<property name="sclCustomerAccountDao" ref="sclCustomerAccountDao"/>
+		<property name="timeService" ref="timeService"/>
+		<property name="modelService" ref="modelService"/>
+
+	</bean>
+	<alias name="defaultSclCustomerAccountDao" alias="sclCustomerAccountDao" />
+	<bean id="defaultSclCustomerAccountDao" class="com.scl.core.customer.dao.impl.DefaultSclCustomerAccountDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<alias name="defaultSclFeedbackService" alias="sclFeedbackService" />
+	<bean id="defaultSclFeedbackService" class="com.scl.core.feedback.services.impl.DefaultSclFeedbackService">
+		<property name="modelService" ref="modelService"/>
+		<property name="sclFeedbackDao" ref="sclFeedbackDao"/>
+	</bean>
+
+	<alias name="defaultSclFeedbackDao" alias="sclFeedbackDao" />
+	<bean id="defaultSclFeedbackDao" class="com.scl.core.feedback.dao.impl.DefaultSclFeedbackDao">
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+	</bean>
+
+	<alias name="defaultSclCustomerService" alias="sclCustomerService" />
+	<bean id="defaultSclCustomerService" class="com.scl.core.customer.services.impl.DefaultSclCustomerService">
+		<property name="userService" ref="userService"/>
+	</bean>
+	<alias name="defaultSclDealerDocumentsService" alias="sclDealerDocumentsService" />
+	<bean id="defaultSclDealerDocumentsService" class="com.scl.core.customer.services.impl.DefaultSclDealerDocumentsService">
+		<property name="mediaService" ref="mediaService"/>
+		<property name="flexibleSearchService" ref="flexibleSearchService"/>
+		<property name="modelService" ref="modelService"/>
+		<property name="sclCustomerService" ref="sclCustomerService"/>
+
+	</bean>
 
 	</beans>

@@ -151,5 +151,7 @@
 		<property name="infrastructureType" type="String"/>
 	</bean>
 
-
+	<bean class="de.hybris.platform.commercefacades.product.data.ReviewData">
+		<property name="orderCode" type="String"/>
+	</bean>
 </beans>
