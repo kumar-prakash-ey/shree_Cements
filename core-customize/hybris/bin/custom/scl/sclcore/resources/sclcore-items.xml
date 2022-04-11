@@ -51,12 +51,208 @@
             <value code="WON"/>
             <value code="LOST"/>
         </enumtype>
+        <enumtype generate="true" code="Ownership" autocreate="true" dynamic="true">
+            <value code="OWNED"/>
+            <value code="RENTED"/>
+        </enumtype>
+        <enumtype generate="true" code="StatusOfApplicant" autocreate="true" dynamic="true">
+            <value code="COMPANY"/>
+            <value code="PARTNERSHIP_FIRM"/>
+            <value code="PROPRIETOR_FIRM"/>
+            <value code="HUF"/>
+        </enumtype>
+        <enumtype generate="true" code="ExistingInfrastructureType" autocreate="true" dynamic="true">
+            <value code="OFFICE"/>
+            <value code="GODOWN"/>
+        </enumtype>
+        <enumtype generate="true" code="MarketInfoType" autocreate="true" dynamic="true">
+            <value code="DEALER"/>
+            <value code="STOCKIEST"/>
+        </enumtype>
+        <enumtype generate="true" code="InfrastructureType" autocreate="true" dynamic="true">
+            <value code="STORAGE"/>
+            <value code="TRANSPORTATION"/>
+        </enumtype>
+        <enumtype generate="true" code="DealerType" autocreate="true" dynamic="true">
+            <value code="PROSPECTIVE_DEALER"/>
+            <value code="SALES_PROMOTER"/>
+        </enumtype>
+        <enumtype generate="true" code="PaymentType" autocreate="true" dynamic="true">
+            <value code="ONLINE"/>
+            <value code="DD"/>
+        </enumtype>
+        <enumtype code="NotificationStatus" autocreate="true" generate="true" dynamic="true">
+            <value code="READ" />
+            <value code="UNREAD" />
+        </enumtype>
+        <enumtype code="NotificationType" autocreate="false" generate="false" dynamic="true">
+            <value code="ALERT" />
+            <value code="ESCALATION" />
+        </enumtype>
     </enumtypes>
 
+    <relations>
+        <relation code="ProsDealer2AddressRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="Address" qualifier="listOfAddress"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation code="ProsDealer2NomineeRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="Nomination" qualifier="nominees"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <!--Prospective Dealer/Sales promoter Existing Infra Office relation -->
+        <relation code="ProsDealer2OfficeRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="ExistingInfrastructure" qualifier="offices"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <!--Prospective Dealer/Sales promoter Existing Infra Godown relation -->
+        <relation code="ProsDealer2GodownRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="ExistingInfrastructure" qualifier="godowns"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <!-- Pros Dealer/Sales Promoter - multiple companies -->
+        <relation code="ProsDealer2Company" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="ProsDealerCompany" qualifier="companies"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <!-- Pros Dealer/Sales Promoter - multiple authorize partnership -->
+        <relation code="ProsDealer2Partnership" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="Partnership" qualifier="partners"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation code="ProsDealer2MarketInfoRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="MarketInformation" qualifier="markets"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation code="ProsDealer2PresentBusinessRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="ProspectiveDealer" qualifier="prosDealer"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="PresentBusiness" qualifier="presentBusinesses"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <!-- state, district, taluka and city relations -->
+        <relation code="State2DistrictsRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="State" qualifier="state"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="District" qualifier="districts"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation code="District2TalukaRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="District" qualifier="district"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="Taluka" qualifier="taluka"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation code="Taluka2CityRelation" generate="true"
+                  localized="false" autocreate="true">
+            <sourceElement type="Taluka" qualifier="taluka"
+                           cardinality="one">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </sourceElement>
+            <targetElement type="City" qualifier="cities"
+                           cardinality="many">
+                <modifiers read="true" write="true" search="true"
+                           optional="true" />
+            </targetElement>
+        </relation>
+
+    </relations>
     <itemtypes>
-
-        <!-- Add your item definitions here -->
-
 
         <!-- TypeGroups are for structure of this file only -->
 
@@ -223,8 +419,7 @@
                         <description>Id of the lead</description>
                         <modifiers read="true" write="true" search="true" optional="true" unique="true"/>
                         <persistence type="property"/>
-                    </attribute>
-                    <attribute qualifier="title" type="localized:java.lang.String">
+                    </attribute>                    <attribute qualifier="title" type="localized:java.lang.String">
                         <description>title of the lead</description>
                         <modifiers/>
                         <persistence type="property"/>
@@ -372,7 +567,553 @@
                 </attributes>
             </itemtype>
 
-        </typegroup>
 
+            <itemtype code="ProspectiveDealer" extends="B2BCustomer" autocreate="true"
+                      generate="true">
+                <description>SCL Prospective Dealer</description>
+                <attributes>
+                    <attribute qualifier="dealerCode" type="java.lang.String">
+                        <description>Prospective Dealer Code</description>
+                        <modifiers read="true" write="true" search="true" optional="true" unique="true"/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="dealerName" type="java.lang.String">
+                        <description>Prospective Dealer Name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="address" type="Address">
+                        <description>Prospective Dealer Address</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="proposer" type="java.lang.String">
+                        <description>Proposer</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="proposedSalesPromotion" type="DealerType">
+                        <description>Proposed Sales Promotion - dealer/sales promoter</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="statusOfApplicant" type="StatusOfApplicant">
+                        <description>Status of Applicant</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="briefOnCementAchievement" type="java.lang.String">
+                        <description>brief On Cement Achievement</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="panCard" type="java.lang.String">
+                        <description>Prospective Dealer Pan Card</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="gstIN" type="java.lang.String">
+                        <description>Prospective Dealer GSTIN</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="stateOfRegistration" type="java.lang.String">
+                        <description>State of Registration</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="businessAchievement" type="java.lang.String">
+                        <description>Business Achievement (Cement and Allied Business)</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="site" type="CMSSite">
+                        <description>Site</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="bankerName" type="java.lang.String">
+                        <description>Bankers name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="branchName" type="java.lang.String">
+                        <description>Branch name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="branchAddress" type="java.lang.String">
+                        <description>Branch Address</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="accountNo" type="java.lang.String">
+                        <description>Account Number</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="securityDepositAmt" type="java.lang.Integer">
+                        <description>Security Deposit Amount</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="paymentType" type="PaymentType">
+                        <description>Security Deposit payment type (online or DD)</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <!-- if security deposit payment, online or DD -->
+                    <attribute qualifier="transactionID" type="java.lang.Integer">
+                        <description>Transaction ID</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="transactionDate" type="java.util.Date">
+                        <description>Transaction Date</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="ddNo" type="java.lang.Integer">
+                        <description>Demand Draft No</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="dated" type="java.util.Date">
+                        <description>Dated on</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="drawnOn" type="java.lang.String">
+                        <description>Drawn on</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="panCardDoc" type="Media">
+                        <description>Pan Card Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="gstDetailsDoc" type="Media">
+                        <description>GST Details Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="ddDetailsDoc" type="Media">
+                        <description>DD Details Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="godownSpaceDoc" type="Media">
+                        <description>Godown Space Details Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="bankStatementDoc" type="Media">
+                        <description>Bank Statement Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="blankChequeDoc" type="Media">
+                        <description>Blank Cheque Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="letterHeadCopyDoc" type="Media">
+                        <description>Letter Head Copy Document</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <!-- if lead generated by SO or from SP Agent-->
+                    <attribute qualifier="createdUser" type="B2BCustomer">
+                        <description>Created User is SO or SP Agent</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="modifiedUser" type="B2BCustomer">
+                        <description>Modified User is SP or SP Agent</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="isDealerContacted" type="java.lang.Boolean">
+                        <description>To check if dealer is contacted/acknowledged by SO</description>
+                        <defaultvalue>false</defaultvalue>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="isDealerCapableForFormFilling" type="java.lang.Boolean">
+                        <description>To check if dealer can fill the form by self</description>
+                        <defaultvalue>false</defaultvalue>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="isSOAlertTriggered" type="java.lang.Boolean">
+                        <description>To check if Alert is Triggered to SO</description>
+                        <defaultvalue>false</defaultvalue>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="isSHAlertTriggered" type="java.lang.Boolean">
+                        <description>To check if Alert is Triggered to SH</description>
+                        <defaultvalue>false</defaultvalue>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Address" autocreate="false" generate="false">
+                <description>Address</description>
+                <attributes>
+                    <attribute qualifier="state" type="State">
+                        <description>State</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="districts" type="District">
+                        <description>District</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="city" type="City">
+                        <description>City</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="taluka" type="Taluka">
+                        <description>Taluka</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="pincode" type="java.lang.String">
+                        <description>Pincode</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="contactNumber" type="java.lang.String">
+                        <description>Contact Number</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="contactNumberOffice" type="java.lang.String">
+                        <description>Contact Number Office</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="contactNumberResidential" type="java.lang.String">
+                        <description>Contact Number Residential</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="mobileNo" type="java.lang.String">
+                        <description>Mobile No</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="alternateMobileNo" type="java.lang.String">
+                        <description>Alternate Mobile No</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="type" type="java.lang.String">
+                        <description>Address Type Permanent/Correspondence </description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="id" type="java.lang.String">
+                        <description>Address ID</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                    <attribute qualifier="isPrimaryAddress" type="java.lang.Boolean">
+                        <defaultvalue>false</defaultvalue>
+                        <description>Primary Address</description>
+                        <modifiers/>
+                        <persistence type="property" />
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Nomination" autocreate="true"
+                      generate="true">
+                <description>Prospective Dealer Nomination
+                </description>
+                <deployment table="Nomination" typecode="12001" />
+                <attributes>
+                    <attribute qualifier="name" type="java.lang.String">
+                        <description>Nomination Name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="fathersName" type="java.lang.String">
+                        <description>Father's Name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="relation" type="java.lang.String">
+                        <description>Relation with dealer/stockiest</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="panCard" type="java.lang.String">
+                        <description>Nominee Pan Card</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="aadharCard" type="java.lang.String">
+                        <description>Nominee Aadhar Card</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Storage" autocreate="true"
+                      generate="true">
+                <description>Prospective Dealer Storage
+                </description>
+                <deployment table="Storage" typecode="12002" />
+                <attributes>
+                    <attribute qualifier="name" type="java.lang.String">
+                        <description>Storage Name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="area" type="java.lang.String">
+                        <description>Storage Area</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="capacity" type="java.lang.String">
+                        <description>Storage Capacity</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="expectedOperationalDate" type="java.util.Date">
+                        <description>Expected Operational Date</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="ownership" type="Ownership">
+                        <description>Ownership</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="type" type="InfrastructureType">
+                        <description>Infrastructure Type storage or transportation</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="ExistingInfrastructure" autocreate="true"
+                      generate="true">
+                <description>Prospective Dealer Existing Infrastructure</description>
+                <deployment table="ExistingInfrastructure" typecode="12003" />
+                <attributes>
+                    <attribute qualifier="location" type="java.lang.String">
+                        <description>Location</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="area" type="java.lang.String">
+                        <description>Area</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="investment" type="java.lang.String">
+                        <description>Investment</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="manPower" type="java.lang.String">
+                        <description>Man Power</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="noOfVehicles" type="java.lang.Integer">
+                        <description>Number of Vehicles</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="ownership" type="Ownership">
+                        <description>Ownership</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="infraType" type="ExistingInfrastructureType">
+                        <description>Infrastructure Type</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="MarketInformation" autocreate="true"
+                      generate="true">
+                <description>Market Information</description>
+                <deployment table="MarketInformation" typecode="12004" />
+                <attributes>
+                    <attribute qualifier="product" type="Product">
+                        <description>product details</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="company" type="java.lang.String">
+                        <description>company details</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="nameOfFirm" type="java.lang.String">
+                        <description>Name of Firm</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="averageSalePerMonth" type="java.lang.Integer">
+                        <description>Average Sale Per Month qty or value</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="marketInfoType" type="MarketInfoType">
+                        <description>Market Info Type</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="Partnership" autocreate="true"
+                      generate="true">
+                <description>Partnership</description>
+                <deployment table="Partnership" typecode="12005" />
+                <attributes>
+                    <attribute qualifier="name" type="java.lang.String">
+                        <description>Partnership Name</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="relation" type="java.lang.String">
+                        <description>Relation With Partner</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="panNo" type="java.lang.String">
+                        <description>PAN No</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="address" type="Address">
+                        <description>Address of partner</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="mainAuthorizedPartner" type="java.lang.String">
+                        <description>Main Authorized Partner</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="primary" type="java.lang.Boolean">
+                        <defaultvalue>false</defaultvalue>
+                        <description>Primary</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="ProsDealerCompany" autocreate="true"
+                      generate="true">
+                <description>Prospective Dealer Company</description>
+                <deployment table="ProsDealerCompany" typecode="12006" />
+                <attributes>
+                    <attribute qualifier="nameOfDirector" type="java.lang.String">
+                        <description>Name of Director</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="addressOfDirector" type="Address">
+                        <description>Address of Director</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="fatherName" type="java.lang.String">
+                        <description>Name of Father</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="address" type="Address">
+                        <description>Address</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="panNo" type="java.lang.String">
+                        <description>PAN No</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="dinNo" type="java.lang.String">
+                        <description>DIN No</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="banker" type="java.lang.String">
+                        <description>Banker Details</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <itemtype code="PresentBusiness" autocreate="true"
+                      generate="true">
+                <description>Present Business Activities of Dealer</description>
+                <deployment table="PresentBusiness" typecode="12007" />
+                <attributes>
+                    <attribute qualifier="nameOfBusiness" type="java.lang.String">
+                        <description>Name of Business</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="natureOfBusiness" type="java.lang.String">
+                        <description>Nature of Business</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="startingYear" type="java.lang.String">
+                        <description>starting year of business</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="currentYearTurnover" type="java.lang.String">
+                        <description>Current Year Turnover</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                    <attribute qualifier="capital" type="java.lang.String">
+                        <description>Capital</description>
+                        <modifiers/>
+                        <persistence type="property"/>
+                    </attribute>
+                </attributes>
+            </itemtype>
+
+            <!-- state, city, district, taluka master -->
+            <itemtype code="State" generate="true" autocreate="true" extends="C2LItem">
+                <description>State Master</description>
+            </itemtype>
+
+            <itemtype code="District" generate="true" autocreate="true" extends="C2LItem">
+                <description>District Master</description>
+            </itemtype>
+
+            <itemtype code="Taluka" generate="true" autocreate="true" extends="C2LItem">
+                <description>Taluka Master</description>
+            </itemtype>
+
+            <itemtype code="City" generate="true" autocreate="true" extends="C2LItem">
+                <description>City Master</description>
+            </itemtype>
+
+        </typegroup>
     </itemtypes>
 </items>

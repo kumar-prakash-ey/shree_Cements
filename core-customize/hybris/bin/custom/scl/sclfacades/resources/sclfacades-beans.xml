@@ -62,4 +62,94 @@
 		<property name="leads" type="java.util.List&lt;com.scl.facades.lead.data.LeadData>"/>
 		<property name="productPortfolio" type="java.util.List&lt;de.hybris.platform.commercefacades.product.data.ProductData>"/>
 	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.ProsDealerData">
+		<property name="dealerCode" type="String"/>
+		<property name="dealerName" type="String"/>
+		<property name="address" type="java.util.List&lt;de.hybris.platform.commercefacades.user.data.AddressData>"/>
+		<property name="statusOfApplicant" type="String" />
+		<property name="businessOfAchievement" type="String" />
+		<property name="panNo" type="String" />
+		<property name="gstIN" type="String" />
+		<property name="stateOfRegistration" type="java.util.List&lt;com.scl.facades.prosdealer.data.StateData>"/>
+		<property name="companies" type="java.util.List&lt;com.scl.facades.prosdealer.data.ProsDealerCompanyData>"/>
+		<property name="partnerships" type="java.util.List&lt;com.scl.facades.prosdealer.data.PartnershipData>"/>
+		<property name="nominees" type="java.util.List&lt;com.scl.facades.prosdealer.data.NominationData>"/>
+		<property name="storages" type="java.util.List&lt;com.scl.facades.prosdealer.data.StorageAndInfraStructureData>"/>
+		<property name="presentBusinesses" type="java.util.List&lt;com.scl.facades.prosdealer.data.PresentBusinessData>"/>
+	</bean>
+
+	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
+		<property name="state" type="java.util.List&lt;com.scl.facades.prosdealer.data.StateData>"/>
+		<property name="districts" type="java.util.List&lt;com.scl.facades.prosdealer.data.DistrictData>"/>
+		<property name="taluka" type="java.util.List&lt;com.scl.facades.prosdealer.data.TalukaData>"/>
+		<property name="city" type="java.util.List&lt;com.scl.facades.prosdealer.data.CityData>"/>
+		<property name="pinCode" type="String" />
+		<property name="mobileNo" type="String"/>
+		<property name="alternateMobileNo" type="String"/>
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.StateData">
+		<property name="isocode" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.DistrictData">
+		<property name="isocode" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.TalukaData">
+		<property name="isocode" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.CityData">
+		<property name="isocode" type="String"/>
+		<property name="name" type="String"/>
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.ProsDealerCompanyData">
+		<property name="nameOfDirector" type="String"/>
+		<property name="fathersName" type="String"/>
+		<property name="address" type="de.hybris.platform.commercefacades.user.data.AddressData"/> <!-- address data or string -->
+		<property name="panNo" type="String"/>
+		<property name="dinNo" type="String"/>
+		<property name="banker" type="String" />
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.PartnershipData">
+		<property name="nameOfPartner" type="String"/>
+		<property name="relation" type="String"/>
+		<property name="address" type="de.hybris.platform.commercefacades.user.data.AddressData"/> <!-- address data or string -->
+		<property name="panNo" type="String"/>
+		<property name="mainAuthorizedPartner" type="String" />
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.NominationData">
+		<property name="nameOfNominee" type="String"/>
+		<property name="fathersName" type="String"/>
+		<property name="relation" type="String"/>
+		<property name="panNo" type="String"/>
+		<property name="aadharNo" type="String" />
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.PresentBusinessData">
+		<property name="nameOfBusiness" type="String"/>
+		<property name="natureOfBusiness" type="String"/>
+		<property name="startingYear" type="String"/>
+		<property name="currentYearTurnover" type="String"/>
+		<property name="capital" type="String" />
+	</bean>
+
+	<bean class="com.scl.facades.prosdealer.data.StorageAndInfraStructureData">
+		<property name="name" type="String"/>
+		<property name="area" type="String"/>
+		<property name="capacity" type="String"/>
+		<property name="expectedOperationalDate" type="java.util.Date"/>
+		<property name="ownership" type="String" />
+		<property name="infrastructureType" type="String"/>
+	</bean>
+
+
 </beans>
