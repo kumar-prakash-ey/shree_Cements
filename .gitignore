@@ -34,6 +34,7 @@ build.xml
 #Generated Java Files
 Generated*.java
 gensrc/
+jalo/
 
 #Coiped addon folders
 addonsrc/
