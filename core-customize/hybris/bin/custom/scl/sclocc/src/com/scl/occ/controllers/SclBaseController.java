@@ -6,6 +6,7 @@ package com.scl.occ.controllers;
 import de.hybris.platform.commerceservices.customer.DuplicateUidException;
 /*import de.hybris.platform.commerceservices.search.pagedata.PaginationData;
 import de.hybris.platform.commercewebservicescommons.dto.search.pagedata.PaginationWsDTO;*/
+import de.hybris.platform.servicelayer.exceptions.AmbiguousIdentifierException;
 import de.hybris.platform.servicelayer.exceptions.ModelNotFoundException;
 import de.hybris.platform.servicelayer.exceptions.UnknownIdentifierException;
 import de.hybris.platform.webservicescommons.dto.error.ErrorListWsDTO;
@@ -174,5 +175,13 @@ public class SclBaseController
     {
         LOG.debug(INVALID_REQUEST_BODY_ERROR_MESSAGE, ex);
         return handleErrorInternal(HttpMessageNotReadableException.class.getSimpleName(), INVALID_REQUEST_BODY_ERROR_MESSAGE);
+    }
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ResponseBody
+    @ExceptionHandler({ AmbiguousIdentifierException.class })
+    public ErrorListWsDTO handleAmbiguosIdentifierException(final AmbiguousIdentifierException ex)
+    {
+        LOG.debug("AmbiguousIdentifierException", ex);
+        return handleErrorInternal("AmbiguousIdentifierException", ex.getMessage());
     }
 }

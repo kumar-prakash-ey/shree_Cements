@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ Copyright (c) 2019 SAP SE or an SAP affiliate company. All rights reserved.
+-->
+<process xmlns="http://www.hybris.de/xsd/processdefinition"
+         start="findProsDealerApprovers" name="prosDealerApproval"
+         processClass="com.scl.core.model.ProsDealerOnboardingProcessModel">
+
+    <!--<action id="approvalProcessStartAction" bean="approvalProcessStartAction">
+        <transition name="OK" to="findApprovers" />
+        <transition name="NOK" to="error" />
+    </action>-->
+
+    <action id="findProsDealerApprovers" bean="findProsDealerApproversAction">
+        <transition name="OK" to="startProsDealerApprovalWorkflow" />
+        <transition name="NOK" to="error" />
+    </action>
+
+    <action id="startProsDealerApprovalWorkflow" bean="startProsDealerApprovalWorkflow">
+        <transition name="OK" to="success" />
+    </action>
+
+    <!--<action id="startApprovalWorkflow" bean="startApprovalWorkflow">
+        <transition name="OK" to="waitForApprovalWorkflow" />
+    </action>
+
+    <wait id="waitForApprovalWorkflow" then="checkApprovalWorkflowResults">
+        <event>APPROVAL_WORKFLOW_COMPLETE_EVENT</event>
+    </wait>
+
+    <action id="checkApprovalWorkflowResults" bean="checkApprovalWorkflowResults">
+        <transition name="OK" to="success" />
+        <transition name="NOK" to="error"/>
+    </action>-->
+
+    <end id="error" state="ERROR">All went wrong.</end>
+    <end id="failed" state="FAILED">Order process failed.</end>
+    <end id="success" state="SUCCEEDED">Order process finished.</end>
+</process>

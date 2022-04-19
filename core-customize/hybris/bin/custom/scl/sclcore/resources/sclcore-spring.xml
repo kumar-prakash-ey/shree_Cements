@@ -378,6 +378,23 @@
         <property name="quoteService" ref="quoteService"/>
     </bean>
 
+    <bean id="findProsDealerApproversAction"
+          class="com.scl.core.actions.prosdealer.FindProsDealerApproversAction"
+          parent="abstractAction">
+        <property name="modelService" ref="modelService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+    <bean id="startProsDealerApprovalWorkflow"
+          class="com.scl.core.actions.prosdealer.StartProsDealerApprovalWorkflow"
+          parent="abstractAction">
+        <property name="b2bWorkflowIntegrationService" ref="b2bWorkflowIntegrationService"/>
+       <!-- <property name="b2bEscalationService" ref="b2bEscalationService"/>-->
+        <!--<property name="permissionResultHelper" ref="permissionResultHelper"/>-->
+        <property name="workflowProcessingService" ref="workflowProcessingService"/>
+        <property name="workflowService" ref="newestWorkflowService"/>
+        <!--<property name="escalate" value="true"/>-->
+    </bean>
+
     <!-- Simple Suggestion Service -->
     <alias alias="simpleSuggestionService" name="defaultSimpleSuggestionService"/>
     <bean id="defaultSimpleSuggestionService"
@@ -568,14 +585,14 @@
     <alias name="defaultSclLeadDao" alias="sclLeadDao"/>
     <bean id="defaultSclLeadDao" class="com.scl.core.lead.dao.impl.DefaultSclLeadDao"/>
 
-    <bean id="customerQueryAcknowledgeAlertJob" class="com.scl.core.job.CustomerQueryAcknowledgeAlertJob"
+  <!--  <bean id="customerQueryAcknowledgeAlertJob" class="com.scl.core.job.CustomerQueryAcknowledgeAlertJob"
           parent="abstractJobPerformable"/>
 
     <alias name="defaultProsDealerService" alias="prosDealerService"/>
     <bean id="defaultProsDealerService" class="com.scl.core.prosdealer.services.impl.ProsDealerServiceImpl"/>
 
     <alias name="defaultProsDealerDao" alias="prosDealerDao"/>
-    <bean id="defaultProsDealerDao" class="com.scl.core.prosdealer.dao.impl.ProsDealerDaoImpl"/>
+    <bean id="defaultProsDealerDao" class="com.scl.core.prosdealer.dao.impl.ProsDealerDaoImpl"/>-->
 
     <alias name="defaultSclCustomerAccountService" alias="sclCustomerAccountService"/>
     <bean id="defaultSclCustomerAccountService"
@@ -605,12 +622,42 @@
     <bean id="defaultSclCustomerService" class="com.scl.core.customer.services.impl.DefaultSclCustomerService">
         <property name="userService" ref="userService"/>
     </bean>
-    <alias name="defaultSclDealerDocumentsService" alias="sclDealerDocumentsService"/>
-    <bean id="defaultSclDealerDocumentsService"
-          class="com.scl.core.customer.services.impl.DefaultSclDealerDocumentsService">
+
+    <alias name="defaultProsDealerDao" alias="prosDealerDao"/>
+    <bean id="defaultProsDealerDao" class="com.scl.core.prosdealer.dao.impl.DefaultProsDealerDao"/>
+
+    <alias name="defaultProsDealerService" alias="prosDealerService"/>
+    <bean id="defaultProsDealerService" class="com.scl.core.prosdealer.service.impl.DefaultProsDealerService">
+        <property name="prosDealerDao" ref="prosDealerDao"/>
+        <property name="modelService" ref="modelService"/>
         <property name="mediaService" ref="mediaService"/>
         <property name="flexibleSearchService" ref="flexibleSearchService"/>
-        <property name="modelService" ref="modelService"/>
-        <property name="sclCustomerService" ref="sclCustomerService"/>
+    </bean>
+
+    <!--Process Definition-->
+    <bean id="prosDealerApprovalProcessDefinitionResource" class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+        <property name="resource" value="classpath:/sclcore/processes/dealer/prosDealerOnboardingProcess.xml"/>
+    </bean>
+
+
+    <bean id="prosDealerApprovalWorkflowTemplateStrategy" class="com.scl.core.strategies.impl.ProsDealerApprovalWorkflowTemplateStrategy" parent="abstractWorkflowTemplateStrategy"/>
+
+
+    <bean id="afterApproveOnboardingWorkflowDecisionAction" class="com.scl.core.process.approval.action.AfterApproveOnboardingWorkflowDecisionAction" parent="b2BAbstractWorkflowAutomatedAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+    <bean id="afterRejectOnboardingWorkflowDecisionAction" class="com.scl.core.process.approval.action.AfterRejectOnboardingWorkflowDecisionAction" parent="b2BAbstractWorkflowAutomatedAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <bean id="approveOnboardingDecisionAutomatedAction" class="com.scl.core.process.approval.action.ApproveOnboardingDecisionAutomatedAction" parent="b2BAbstractWorkflowAutomatedAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+
+    <bean id="rejectOnboardingDecisionAutomatedAction" class="com.scl.core.process.approval.action.RejectOnboardingDecisionAction" parent="b2BAbstractWorkflowAutomatedAction">
+        <property name="eventService" ref="eventService"/>
+    </bean>
+    <bean id="checkOnboardingApprovalResult" class="com.scl.core.process.approval.action.CheckOnboardingApprovalResult" parent="abstractAction">
+
     </bean>
 </beans>

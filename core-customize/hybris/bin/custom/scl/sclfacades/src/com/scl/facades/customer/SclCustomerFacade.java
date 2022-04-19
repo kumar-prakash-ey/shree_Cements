@@ -1,7 +1,8 @@
 package com.scl.facades.customer;
 
+import com.scl.facades.prosdealer.data.ProsDealerData;
+import com.scl.facades.prosdealer.data.ProsDealerListData;
 import de.hybris.platform.commercefacades.customer.CustomerFacade;
-import org.springframework.web.multipart.MultipartFile;
 
 public interface SclCustomerFacade extends CustomerFacade {
 
@@ -10,7 +11,8 @@ public interface SclCustomerFacade extends CustomerFacade {
      */
     void calculateLastSixMonthsAverageOrderValue();
 
+    ProsDealerListData getProspectiveDealersForCurrentuser();
 
+    ProsDealerData getProsDealerDetailsByCode(final String prosDealerCode);
 
-    void uploadDealerDocument(final String dealerCode , final String documentType , final MultipartFile file);
 }

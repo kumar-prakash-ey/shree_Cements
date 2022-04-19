@@ -78,6 +78,9 @@
 		<property name="storages" type="java.util.List&lt;com.scl.facades.prosdealer.data.StorageAndInfraStructureData>"/>
 		<property name="presentBusinesses" type="java.util.List&lt;com.scl.facades.prosdealer.data.PresentBusinessData>"/>
 	</bean>
+	<bean class="com.scl.facades.prosdealer.data.ProsDealerListData">
+		<property name="prosDealers" type="java.util.List&lt;com.scl.facades.prosdealer.data.ProsDealerData>"/>
+	</bean>
 
 	<bean class="de.hybris.platform.commercefacades.user.data.AddressData">
 		<property name="state" type="java.util.List&lt;com.scl.facades.prosdealer.data.StateData>"/>

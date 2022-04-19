@@ -47,4 +47,28 @@
     <!--<alias name="defaultDealerDocumentWsDTOValidator" alias="dealerDocumentWsDTOValidator" />
     <bean id="defaultDealerDocumentWsDTOValidator" class="com.scl.occ.validator.DealerDocumentWsDTOValidator" />-->
 
+    <bean parent="fieldSetLevelMapping" id="prosDealerWsDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="com.scl.occ.dto.prosdealer.ProsDealerWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="dealerCode,dealerName,statusOfApplicant"/>
+                <entry key="DEFAULT"
+                       value="dealerCode,dealerName,statusOfApplicant,address(FULL),businessOfAchievement,panNo,gstIN"/>
+                <entry key="FULL"
+                       value="dealerCode,dealerName,statusOfApplicant,address(FULL),businessOfAchievement,panNo,gstIN"/>
+            </map>
+        </property>
+    </bean>
+    <bean parent="fieldSetLevelMapping" id="prosDealerListWsDTOFieldSetLevelMapping">
+        <property name="dtoClass"
+                  value="com.scl.occ.dto.prosdealer.ProsDealerListWsDTO"/>
+        <property name="levelMapping">
+            <map>
+                <entry key="BASIC" value="prosDealers"/>
+                <entry key="DEFAULT" value="prosDealers(DEFAULT)"/>
+                <entry key="FULL" value="prosDealers(FULL)"/>
+            </map>
+        </property>
+    </bean>
 </beans>

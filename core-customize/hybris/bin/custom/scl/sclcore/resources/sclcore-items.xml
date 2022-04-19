@@ -89,6 +89,28 @@
             <value code="ALERT" />
             <value code="ESCALATION" />
         </enumtype>
+        <enumtype code="WorkflowTemplateType" autocreate="false" generate="false">
+            <value code="PROSPECTIVE_DEALER_APPROVAL"/>
+        </enumtype>
+
+        <enumtype code="OnboardingStatus" autocreate="true" generate="true"
+                  dynamic="true">
+            <value code="CREATED"/>
+            <value code="DEALER_CONTACTED_SO"/>
+            <value code="ALERT_SH"/>
+            <value code="PENDING_APPROVAL_SO"/>
+            <value code="PENDING_APPROVAL_SH"/>
+            <value code="APPROVED_BY_SO"/>
+            <value code="APPROVED_BY_SH"/>
+            <value code="REJECTED_BY_SO"/>
+            <value code="REJECTED_BY_SH"/>
+            <value code="DOCUMENT_VERIFIED"/>
+            <value code="PROCESSING_ERROR"/>
+            <value code="SUSPENDED"/>
+            <value code="CANCELLED"/>
+            <value code="SUCCESS"/>
+        </enumtype>
+
     </enumtypes>
     <relations>
         <relation  localized="false" code="ReviewToOrderRel" autocreate="true">
@@ -268,6 +290,42 @@
                            optional="true" />
             </targetElement>
         </relation>
+
+        <relation generate="true" localized="false" code="ProsDealer2ApprovalProcess"
+                  autocreate="true">
+            <sourceElement type="ProspectiveDealer" cardinality="one"
+                           qualifier="prosDealer">
+                <modifiers initial="true" optional="true" />
+            </sourceElement>
+            <targetElement type="ProsDealerApprovalProcess" cardinality="many"
+                           qualifier="prosDealerApprovalProcess">
+                <modifiers initial="true" optional="true" />
+            </targetElement>
+        </relation>
+
+        <relation generate="true" localized="false" code="ProsDlr2OnboardingProcess"
+                  autocreate="true">
+            <sourceElement type="ProspectiveDealer" cardinality="one"
+                           qualifier="prosDealer">
+                <modifiers initial="true" optional="true" />
+            </sourceElement>
+            <targetElement type="ProsDealerOnboardingProcess" cardinality="many"
+                           qualifier="prosDealerOnboardingProcess">
+                <modifiers initial="true" optional="true" />
+            </targetElement>
+        </relation>
+
+        <!--<relation code="ProsDealer2Approvers" localized="false"
+                  generate="true" autocreate="true">
+            <sourceElement type="ProspectiveDealer"
+                           cardinality="one" qualifier="prosDealer">
+                <modifiers read="true" write="true" search="true"/>
+            </sourceElement>
+            <targetElement type="SclUser" qualifier="approvers"
+                           cardinality="many" collectiontype="set">
+                <modifiers read="true" write="true" search="true"/>
+            </targetElement>
+        </relation>-->
 
     </relations>
     <itemtypes>
@@ -801,6 +859,14 @@
                         <modifiers/>
                         <persistence type="property" />
                     </attribute>
+                    <attribute qualifier="workflow" type="Workflow" >
+                        <persistence type="property" />
+                        <modifiers read="true" write="true" optional="true" />
+                    </attribute>
+                    <attribute qualifier="onboardingStatus" type="OnboardingStatus" >
+                        <persistence type="property" />
+                        <modifiers/>
+                    </attribute>
                 </attributes>
             </itemtype>
 
@@ -1155,6 +1221,14 @@
 
             <itemtype code="City" generate="true" autocreate="true" extends="C2LItem">
                 <description>City Master</description>
+            </itemtype>
+
+            <itemtype code="ProsDealerApprovalProcess" autocreate="true" generate="true"
+                      extends="BusinessProcess">
+            </itemtype>
+
+            <itemtype code="ProsDealerOnboardingProcess" autocreate="true" generate="true"
+                      extends="BusinessProcess">
             </itemtype>
 
         </typegroup>

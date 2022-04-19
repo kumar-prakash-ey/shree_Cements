@@ -222,7 +222,10 @@
 		<property name="sclCustomerAccountService" ref="sclCustomerAccountService"/>
 		<property name="userService" ref="userService"/>
 		<property name="baseStoreService" ref="baseStoreService"/>
-		<property name="sclDealerDocumentsService" ref="sclDealerDocumentsService"/>
+		<property name="sclCustomerService" ref="sclCustomerService"/>
+		<property name="prosDealerListConverter" ref="prosDealerListConverter"/>
+		<property name="prosDealerService" ref="prosDealerService"/>
+		<property name="prosDealerDetailsConverter" ref="prosDealerDetailsConverter"/>
 	</bean>
 
 	<alias name="defaultSclFeedbackFacade" alias="sclFeedbackFacade" />
@@ -244,4 +247,33 @@
 		<property name="add" ref="SclFeedbackPopulator"/>
 	</bean>
 
+	<alias name="defaultProsDealerListConverter" alias="prosDealerListConverter"/>
+	<bean id="defaultProsDealerListConverter" parent="abstractPopulatingConverter" >
+		<property name="targetClass" value="com.scl.facades.prosdealer.data.ProsDealerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="prosDealerBasicPopulator"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="prosDealerBasicPopulator" class="com.scl.facades.populators.prosdealer.ProspectiveDealerBasicPopulator" >
+	</bean>
+
+	<alias name="defaultProsDealerDetailsConverter" alias="prosDealerDetailsConverter"/>
+	<bean id="defaultProsDealerDetailsConverter" parent="abstractPopulatingConverter" >
+		<property name="targetClass" value="com.scl.facades.prosdealer.data.ProsDealerData"/>
+		<property name="populators">
+			<list>
+				<ref bean="prosDealerBasicPopulator"/>
+				<ref bean="prosDealerExtPopulator"/>
+				<!--Add More populator for details data-->
+			</list>
+		</property>
+	</bean>
+	<bean id="prosDealerExtPopulator" class="com.scl.facades.populators.prosdealer.ProspectiveDealerExtPopulator" >
+	</bean>
+	<alias name="defaultProsDealerFacade" alias="prosDealerFacade" />
+	<bean id="defaultProsDealerFacade" class="com.scl.facades.prosdealer.impl.DefaultProsDealerFacade">
+		<property name="prosDealerService" ref="prosDealerService"/>
+	</bean>
 </beans>
